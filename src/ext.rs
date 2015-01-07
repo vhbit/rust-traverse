@@ -1,6 +1,7 @@
 use super::*;
 use std::ops::Deref;
 
+#[old_impl_check]
 impl<T, O, I, F> Traversal for Map<I, F>
 where I: Traversal<Item=T>, F: FnMut(T) -> O {
     type Item = O;
@@ -25,6 +26,7 @@ where I: Traversal<Item=T>, F: FnMut(&T) -> bool {
     }
 }
 
+#[old_impl_check]
 impl<T, O, I, F> Traversal for FilterMap<I, F>
 where I: Traversal<Item=T>, F: FnMut(T) -> Option<O> {
     type Item = O;
@@ -156,6 +158,7 @@ where I: Traversal<Item=T>, O: Traversal<Item=T> {
     }
 }
 
+#[old_impl_check]
 impl<T, O, U, I, F> Traversal for FlatMap<I, F>
 where I: Traversal<Item=T>,
       F: FnMut(T) -> U,
